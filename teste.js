@@ -30,3 +30,4 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
         document.getElementById('result').innerHTML = "Erro no servidor!"
     }
 })
+

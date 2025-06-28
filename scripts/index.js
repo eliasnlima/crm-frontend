@@ -1,4 +1,5 @@
 
+
 document.getElementById("login-form").addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -22,7 +23,7 @@ document.getElementById("login-form").addEventListener('submit', async (e) => {
             localStorage.setItem('token', data.token)
             document.getElementById('result').innerHTML = "Login realizado com sucesso!"
 
-            setTimeout(() => window.location.href = 'clientes.html', 1000)
+            setTimeout(() => window.location.href = 'telas/clientes.html', 1000)
         } else {
             document.getElementById('result').innerHTML = data.error || 'Erro ao fazer login';
             
@@ -32,3 +33,4 @@ document.getElementById("login-form").addEventListener('submit', async (e) => {
     }
     
 })
+
