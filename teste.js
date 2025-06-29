@@ -1,33 +1,36 @@
-document.getElementById('login-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
 
-    const email = document.getElementById('email').value 
-    const password = document.getElementById('password').value 
+    const token = localStorage.getItem('token')
+
+    if(!token){
+        document.getElementById('result').innerHTML = "Usuario não autenticado!"
+    }
+
+    showClients(token)
+
+})
+
+async function showClients(token){
+
+    const div = document.getElementById('div')
 
     try{
-
-        const res = await fetch('http://localhost:3030/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password})
-        })
-
-        const data = await res.json()
-
-        if(res.ok){
-
-            localStorage.setItem('token', data.token)
-            document.getElementById('result').innerHTML = "login feito com sucesso!"
-
-            setTimeout(() => window.location.href = 'clientes.html', 1000)
-        } else {
-            document.getElementById('result').innerHTML = "Login incorreto!"
+    const res = await fetch('http://localhost:3030/clients', {
+        method: 'GET',
+        headers: {
+            'authorization' : 'Bearer' + token
         }
+    })
 
+    const data = await res.json()
+
+    data.clients.forEach(client => {
+        const li = document.createElement('li')
+        li.innerHTML = `${client.nome}`
+
+        div.appendChild(li)
+    })
     } catch (err){
         document.getElementById('result').innerHTML = "Erro no servidor!"
     }
-})
-
+}

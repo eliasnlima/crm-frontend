@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if(!token){
         document.getElementById('result').innerHTML = "Usuario não autenticado, faça login!"
+        return;
     }
 
     showClients(token)
@@ -24,6 +25,11 @@ async function showClients(token){
     })
 
     const dataClients = await res.json()
+
+    if(!res.ok){
+        const messageErro = dataClients.error || 'Erro no servidor!';
+        document.getElementById('result').innerHTML = messageErro
+    }
 
     dataClients.clients.forEach(client => {
         const li = document.createElement("li")
