@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function showClients(token){
 
     const div = document.getElementById('clients')
-    
+    div.innerHTML = ""
     
     try{
     const res = await fetch('http://localhost:3030/clients', {
@@ -43,3 +43,58 @@ async function showClients(token){
     
 
 }
+
+const modal = document.getElementById('modal')
+const abrirModal = document.getElementById('add-client-btn')
+const fecharModal = document.getElementById('fechar-btn')
+const cadastrarBtn = document.getElementById('cadastrar-btn')
+
+abrirModal.addEventListener('click', () => {
+    modal.style.display = "flex"
+})
+
+fecharModal.addEventListener('click', () => {
+    modal.style.display = "none"
+})
+
+cadastrarBtn.addEventListener('click', async () => {
+
+    const nome = document.getElementById('nome').value 
+    const CNPJ = document.getElementById('cnpj').value 
+    const token = localStorage.getItem('token')
+    const msg = document.getElementById('modal-msg')
+
+    if(!nome || !CNPJ){
+        msg.innerText = "Preencha todos os campos!"
+    }
+
+    try{
+
+        const res = await fetch('http://localhost:3030/client', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+                'authorization' : 'Bearer ' + token
+            },
+            body: JSON.stringify({nome, CNPJ})
+        })
+
+        const data = res.json()
+
+        if(res.ok){
+
+            modal.style.display = "none"
+            document.getElementById('nome').value = ""
+            document.getElementById('cnpj').value = ""
+            showClients(token)
+
+        }else {
+            msg.innerText = "Erro ao cadastrar cliente!"
+        }
+
+
+
+    }catch (err){
+        msg.innerText = "Erro no SERVIDOR ao cadastrar cliente!"
+    }
+})

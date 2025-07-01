@@ -8,8 +8,29 @@
 <body>
   <div class="container">
     <h1>Meus Clientes</h1>
+    <div class="add-client-wrapper">
+      <button id="add-client-btn">+ Novo Cliente</button>
+    </div>
+
     <div id="result" class="message"></div>
     <ul id="clients" class="client-list"></ul>
+
+    <!-- Botão de novo cliente -->
+
+
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h2>Cadastrar Cliente</h2>
+    <input type="text" id="nome" placeholder="Nome" />
+    <input type="text" id="cnpj" placeholder="CNPJ" />
+    <div class="modal-actions">
+      <button id="cadastrar-btn">Cadastrar</button>
+      <button id="fechar-btn">Cancelar</button>
+    </div>
+    <p id="modal-msg"></p>
+  </div>
+</div>
   </div>
 
   <script src="../scripts/clients.js"></script>
