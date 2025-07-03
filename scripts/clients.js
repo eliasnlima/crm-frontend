@@ -35,7 +35,15 @@ async function showClients(token){
         const li = document.createElement("li")
         li.innerHTML = `${client.nome}`
         
-        div.appendChild(li)
+        const a = document.createElement('a')
+        a.appendChild(li)
+        a.href = 'client.html'
+        a.classList.add = "itemClient"
+        a.onclick = () => editClient()
+
+        div.appendChild(a)
+        
+        
     });
     } catch (err){
         document.getElementById('result').innerHTML = "erro no servidor!"

@@ -7,18 +7,25 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 1200px; /* largura ampla */
   margin: 40px auto;
   background: #1f2937; /* cinza escuro */
-  padding: 30px;
+  padding: 50px; /* bastante espaço interno */
   border-radius: 10px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 }
 
-h1 {
+h1, h2 {
+ margin-top: 0px;
   margin-bottom: 20px;
   text-align: center;
   color: #f3f4f6;
+}
+
+#cliente-info p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #e5e7eb;
 }
 
 .message {
@@ -27,12 +34,35 @@ h1 {
   margin-bottom: 20px;
 }
 
-.client-list {
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#abrir-modal {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+#abrir-modal:hover {
+  background-color: #059669;
+}
+
+ul {
   list-style: none;
   padding: 0;
 }
 
-.client-list li {
+li {
   background-color: #374151; /* cinza médio */
   padding: 12px 16px;
   margin-bottom: 12px;
@@ -42,26 +72,8 @@ h1 {
   transition: background 0.3s;
 }
 
-.client-list li:hover {
+li:hover {
   background-color: #4b5563;
-}
-
-
-#add-client-btn {
-  background-color: #10b981;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  transition: background 0.3s;
-}
-
-#add-client-btn:hover {
-  background-color: #059669;
 }
 
 /* Modal */
@@ -88,13 +100,14 @@ h1 {
   flex-direction: column;
 }
 
-.modal-content input {
+.modal-content textarea {
   margin: 10px 0;
   padding: 10px;
   border: 1px solid #374151;
   background-color: #374151;
   color: #fff;
   border-radius: 4px;
+  resize: none;
 }
 
 .modal-actions {
@@ -113,12 +126,12 @@ h1 {
   margin: 0 5px;
 }
 
-#cadastrar-btn {
+#cadastrar-acao {
   background-color: #3b82f6;
   color: white;
 }
 
-#fechar-btn {
+#fechar-modal {
   background-color: #ef4444;
   color: white;
 }
@@ -130,13 +143,25 @@ h1 {
   text-align: center;
 }
 
-.add-client-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  margin: 10px 0;
+.cliente-topo {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-a {
-  text-decoration: none;
-  
+.cliente-topo h1 {
+  font-size: 28px;
+  color: #f9fafb;
+}
+
+.cliente-topo p {
+  font-size: 18px;
+  color: #d1d5db;
+  margin-top: 5px;
+}
+
+.cliente-info-extra p {
+  font-size: 16px;
+  color: #9ca3af;
+  margin: 4px 0 10px 0;
+  text-align: center;
 }
