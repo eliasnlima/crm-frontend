@@ -33,12 +33,7 @@ async function showClients(token){
 
     dataClients.clients.forEach(client => {
         const li = document.createElement("li")
-        li.innerHTML = `<a href="client.html?id=${client._id}">${client.nome}</a>`
-        
-        
-
-        
-
+        li.innerHTML = `<a href="detalhes.html?id=${client._id}">${client.nome}</a>`
         div.appendChild(li)
         
         
