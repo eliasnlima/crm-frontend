@@ -144,7 +144,6 @@ li:hover {
 }
 
 .cliente-topo {
-  text-align: center;
   margin-bottom: 20px;
 }
 
@@ -156,12 +155,53 @@ li:hover {
 .cliente-topo p {
   font-size: 18px;
   color: #d1d5db;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .cliente-info-extra p {
   font-size: 16px;
   color: #9ca3af;
   margin: 4px 0 10px 0;
-  text-align: center;
+  
+}
+
+.cliente-detalhes {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.cliente-topo,
+.cliente-info-extra {
+  text-align: left;
+}
+
+.cliente-detalhes {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.cliente-topo h1,
+.cliente-topo p,
+.cliente-info-extra p {
+  text-align: left;
+}
+
+.cliente-detalhes {
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.cliente-topo h1,
+.cliente-topo p,
+.cliente-info-extra p {
+  text-align: left;
+}
+
+.cliente-acoes {
+  border-top: 1px solid #374151;
+  padding-top: 30px;
+}
+
+.header-actions h2 {
+  margin: 0;
 }

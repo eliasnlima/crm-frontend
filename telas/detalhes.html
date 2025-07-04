@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detalhes do Cliente</title>
+  <link rel="stylesheet" href="../styles/detalhes.css" />
+</head>
+<body>
+  <div class="container">
+
+  <!-- DIV SUPERIOR: Dados do Cliente -->
+  <div class="cliente-detalhes">
+    <div class="cliente-topo">
+      <h1 id="cliente-nome">Nome do Cliente</h1>
+      <p id="cliente-cnpj">CNPJ: 00.000.000/0000-00</p>
+    </div>
+
+    <div class="cliente-info-extra">
+      <p id="cliente-email">Email: cliente@exemplo.com</p>
+      <p id="cliente-telefone">Telefone: (11) 99999-9999</p>
+    </div>
+  </div>
+
+  <!-- DIV INFERIOR: Ações -->
+  <div class="cliente-acoes">
+    <div class="header-actions">
+      <h2>Ações</h2>
+      <button id="abrir-modal">+ Adicionar Ação</button>
+    </div>
+
+    <ul id="acoes"></ul>
+    <div class="message" id="acao-msg"></div>
+  </div>
+
+</div>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h3>Adicionar Ação</h3>
+      <textarea id="descricao" placeholder="Descreva a ação..."></textarea>
+      <div id="modal-msg" class="message"></div>
+      <div class="modal-buttons">
+        <button id="fechar-modal">Cancelar</button>
+        <button id="cadastrar-acao">Cadastrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../scripts/detalhes.js"></script>
+</body>
+</html>
