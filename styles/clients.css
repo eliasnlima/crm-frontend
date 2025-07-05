@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 1200px;
   margin: 40px auto;
   background: #1f2937; /* cinza escuro */
   padding: 30px;
