@@ -28,7 +28,10 @@ async function carregarCliente(clientId, token) {
 
     document.getElementById('cliente-nome').innerText = data.client.nome
     document.getElementById('cliente-cnpj').innerText = `CNPJ: ${data.client.CNPJ}`
+     document.getElementById('cliente-email').innerText = `Email: ${data.client.email}`
+      document.getElementById('cliente-telefone').innerText = `Telefone: (${data.client.fone}`
 
+      
     } catch (err){
         document.getElementById('cliente-nome').innerText = "Erro no servidor!"
     }
@@ -116,7 +119,16 @@ async function showActions(clientId, token) {
 
     });
 
-
-
 }
 
+function formatarCNPJ(cnpj) {
+  const numeros = cnpj.replace(/\D/g, ''); 
+  if (numeros.length !== 14) return cnpj; 
+  return numeros.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5");
+}
+
+function formatarTelefone(telefone) {
+  const numeros = telefone.replace(/\D/g, ''); 
+  if (numeros.length !== 11) return telefone; 
+  return numeros.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
+}

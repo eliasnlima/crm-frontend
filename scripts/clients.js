@@ -62,6 +62,9 @@ cadastrarBtn.addEventListener('click', async () => {
 
     const nome = document.getElementById('nome').value 
     const CNPJ = document.getElementById('cnpj').value 
+    const fone = document.getElementById('fone').value 
+    const email = document.getElementById('email').value 
+
     const token = localStorage.getItem('token')
     const msg = document.getElementById('modal-msg')
 
@@ -77,7 +80,7 @@ cadastrarBtn.addEventListener('click', async () => {
                 'Content-Type' : 'application/json',
                 'authorization' : 'Bearer ' + token
             },
-            body: JSON.stringify({nome, CNPJ})
+            body: JSON.stringify({nome, CNPJ, fone, email})
         })
 
         const data = res.json()
@@ -87,6 +90,8 @@ cadastrarBtn.addEventListener('click', async () => {
             modal.style.display = "none"
             document.getElementById('nome').value = ""
             document.getElementById('cnpj').value = ""
+            document.getElementById('fone').value = ""
+            document.getElementById('email').value = ""
             showClients(token)
 
         }else {
