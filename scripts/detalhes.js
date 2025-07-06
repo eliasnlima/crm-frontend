@@ -48,6 +48,9 @@ fecharModal.addEventListener('click', () => {
     modal.style.display = "none"
 }) 
 
+document.getElementById('btn-voltar').addEventListener('click', () => {
+    window.location.href = "../telas/clientes.html"
+})
 
 async function cadastra(client, token) {
     
