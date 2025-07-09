@@ -190,7 +190,7 @@ li:hover {
 }
 
 .cliente-detalhes {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   text-align: left;
 }
 
@@ -270,4 +270,23 @@ ul#acoes li .data {
 
 #btn-voltar:hover {
   background-color: #4b5563;
+}
+
+.cliente-status {
+  margin-top: 2px;
+  padding: 15px 0;
+}
+
+.cliente-status label {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #f3f4f6;
+}
+
+#status {
+  padding: 6px;
+  background-color: #374151;
+  color: #f9fafb;
+  border: 1px solid #4b5563;
+  border-radius: 4px;
 }

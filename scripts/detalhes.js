@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarCliente(clientId, token)
     showActions(clientId, token)
     cadastra(clientId, token)
+    statusClient(clientId, token)
 })
 
 async function carregarCliente(clientId, token) {
@@ -28,8 +29,9 @@ async function carregarCliente(clientId, token) {
 
     document.getElementById('cliente-nome').innerText = data.client.nome
     document.getElementById('cliente-cnpj').innerText = `CNPJ: ${formatarCNPJ(data.client.CNPJ)}`
-     document.getElementById('cliente-email').innerText = `Email: ${data.client.email}`
-      document.getElementById('cliente-telefone').innerText = `Telefone: ${formatarTelefone(data.client.fone)}`
+    document.getElementById('cliente-email').innerText = `Email: ${data.client.email}`
+    document.getElementById('cliente-telefone').innerText = `Telefone: ${formatarTelefone(data.client.fone)}`
+    document.getElementById('status').value = data.client.status
 
       
     } catch (err){
@@ -136,4 +138,29 @@ function formatarTelefone(telefone) {
   const numeros = telefone.replace(/\D/g, ''); 
   if (numeros.length !== 11) return telefone; 
   return numeros.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
+}
+
+
+async function statusClient(clientId, token){
+
+    document.getElementById('status').addEventListener('change', async (e) => {
+   
+
+    const status = e.target.value
+
+    const res = await fetch(`http://localhost:3030/clientStatus/${clientId}`, {
+        method: 'PUT',
+        headers: {
+            'authorization' : 'Bearer ' + token,
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({ status })
+    })
+
+    const data = await res.json()
+
+
+})
+
+
 }
