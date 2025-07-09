@@ -61,6 +61,11 @@ async function cadastra(client, token) {
 
     const descricao = document.getElementById('descricao').value
 
+    if(!descricao){
+        document.getElementById('modal-msg').innerHTML = "Preencha o campo!"
+        return
+    }
+
     const res = await fetch('http://localhost:3030/action', {
         method: 'POST',
         headers: {
