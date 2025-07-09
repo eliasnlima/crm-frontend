@@ -33,7 +33,7 @@ async function showClients(token){
 
     dataClients.clients.forEach(client => {
         const li = document.createElement("li")
-        li.innerHTML = `<a href="detalhes.html?id=${client._id}">${client.nome}<span class="data">CNPJ: ${client.CNPJ}</span></a>`
+        li.innerHTML = `<a href="detalhes.html?id=${client._id}">${client.nome}<span class="data">CNPJ: ${formatarCNPJ(client.CNPJ)} - ${formatarTelefone(client.fone)} - ${client.email}</span></a>`
         div.appendChild(li)
         
         
@@ -104,3 +104,15 @@ cadastrarBtn.addEventListener('click', async () => {
         msg.innerText = "Erro no SERVIDOR ao cadastrar cliente!"
     }
 })
+
+function formatarCNPJ(cnpj) {
+  const numeros = cnpj.replace(/\D/g, ''); 
+  if (numeros.length !== 14) return cnpj; 
+  return numeros.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5");
+}
+
+function formatarTelefone(telefone) {
+  const numeros = telefone.replace(/\D/g, ''); 
+  if (numeros.length !== 11) return telefone; 
+  return numeros.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
+}
