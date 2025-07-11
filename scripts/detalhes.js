@@ -27,7 +27,7 @@ async function carregarCliente(clientId, token) {
 
     const data = await res.json()
 
-    document.getElementById('cliente-nome').innerText = data.client.nome
+    document.getElementById('cliente-nome').innerText = `${data.client.codigo} - ${data.client.nome}`
     document.getElementById('cliente-cnpj').innerText = `CNPJ: ${formatarCNPJ(data.client.CNPJ)}`
     document.getElementById('cliente-email').innerText = `Email: ${data.client.email}`
     document.getElementById('cliente-telefone').innerText = `Telefone: ${formatarTelefone(data.client.fone)}`
