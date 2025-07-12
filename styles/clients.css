@@ -150,3 +150,18 @@ a {
   margin-left: 8px;
   padding: 5px;
 }
+
+.search-wrapper {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#search-client {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #374151;
+  background-color: #1f2937;
+  color: #f9fafb;
+}

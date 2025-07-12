@@ -11,10 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
-async function showClients(token){
+let todosClients = []
 
-    const div = document.getElementById('clients')
-    div.innerHTML = ""
+async function showClients(token){
     
     try{
     const res = await fetch('http://localhost:3030/clients', {
@@ -29,20 +28,30 @@ async function showClients(token){
     if(!res.ok){
         const messageErro = dataClients.error || 'Erro no servidor!';
         document.getElementById('result').innerHTML = messageErro
+        return
     }
 
-    dataClients.clients.forEach(client => {
-        const li = document.createElement("li")
-        li.innerHTML = `<a href="detalhes.html?id=${client._id}">${client.codigo} - ${client.nome}<span class="data">CNPJ: ${formatarCNPJ(client.CNPJ)} - ${formatarTelefone(client.fone)} - ${client.email}}</span></a>`
-        div.appendChild(li)
-        
-        
-    });
+        todosClients = dataClients.clients
+        renderClients(todosClients)
+
     } catch (err){
         document.getElementById('result').innerHTML = "erro no servidor!"
     }
+
     
 
+}
+
+function renderClients(todosClients) {
+
+    const div = document.getElementById('clients')
+    div.innerHTML = ""
+    
+    todosClients.forEach(client => {
+        const li = document.createElement("li")
+        li.innerHTML = `<a href="detalhes.html?id=${client._id}">${client.codigo} - ${client.nome}<span class="data">CNPJ: ${formatarCNPJ(client.CNPJ)} - ${formatarTelefone(client.fone)} - ${client.email}</span></a>`
+        div.appendChild(li)
+    });
 }
 
 const modal = document.getElementById('modal')
@@ -83,7 +92,7 @@ cadastrarBtn.addEventListener('click', async () => {
             body: JSON.stringify({nome, CNPJ, fone, email})
         })
 
-        const data = res.json()
+        const data = await res.json()
 
         if(res.ok){
 
@@ -116,3 +125,17 @@ function formatarTelefone(telefone) {
   if (numeros.length !== 11) return telefone; 
   return numeros.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
 }
+
+document.getElementById('search-client').addEventListener('input', (e) => {
+    const termo = e.target.value.toLowerCase()
+
+    const filtrados = todosClients.filter(cliente => {
+        return (
+            cliente.nome?.toLowerCase().includes(termo) ||
+            cliente.codigo?.toLowerCase().includes(termo)
+        )
+
+    })
+
+    renderClients(filtrados)
+})
