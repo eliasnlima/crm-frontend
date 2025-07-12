@@ -8,9 +8,15 @@
 <body>
   <div class="container">
     <h1>Meus Clientes</h1>
-    <div class="add-client-wrapper">
-      <button id="add-client-btn">+ Novo Cliente</button>
-    </div>
+
+  
+  <div class="add-client-wrapper">
+      <button id="abrir-resumo-btn">Resumo</button>
+    <button id="add-client-btn">+ Novo Cliente</button>
+  </div>
+ 
+
+    
 
     <div id="result" class="message"></div>
       <div class="search-wrapper">
@@ -18,10 +24,10 @@
       </div>
     <ul id="clients" class="client-list"></ul>
 
-    <!-- Botão de novo cliente -->
+ 
 
 
-<!-- Modal -->
+
 <div class="modal" id="modal">
   <div class="modal-content">
     <h2>Cadastrar Cliente</h2>
@@ -36,8 +42,31 @@
     <p id="modal-msg"></p>
   </div>
 </div>
+
+
+<div id="modal-resumo" class="modal">
+  <div class="modal-content" style="max-width: 500px">
+    <h2>Resumo</h2>
+    <table id="tabela-fases" border="1" style="width:100%; color: white; text-align: left; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Quantidade</th>
+        </tr>
+      </thead>
+      <tbody>
+  
+      </tbody>
+    </table>
+    <button id="fechar-resumo-btn">Fechar</button>
+  </div>
+</div>
   </div>
 
+
+  </div>
+
+  
   <script src="../scripts/clients.js"></script>
   
 </body>

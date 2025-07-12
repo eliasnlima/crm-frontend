@@ -139,3 +139,35 @@ document.getElementById('search-client').addEventListener('input', (e) => {
 
     renderClients(filtrados)
 })
+
+document.getElementById('abrir-resumo-btn').addEventListener('click', () => {
+  const fasesContagem = contarPorFase(todosClients)
+  renderizarTabelaFases(fasesContagem)
+  document.getElementById('modal-resumo').style.display = 'flex'
+})
+
+document.getElementById('fechar-resumo-btn').addEventListener('click', () => {
+  document.getElementById('modal-resumo').style.display = 'none'
+})
+
+function contarPorFase(clientes) {
+  const contagem = {}
+
+  clientes.forEach(cliente => {
+    const fase = cliente.status || 'Não definido'
+    contagem[fase] = (contagem[fase] || 0) + 1
+  })
+
+  return contagem
+}
+
+function renderizarTabelaFases(fases) {
+  const tbody = document.querySelector('#tabela-fases tbody')
+  tbody.innerHTML = ''
+
+  Object.entries(fases).forEach(([fase, quantidade]) => {
+    const tr = document.createElement('tr')
+    tr.innerHTML = `<td>${fase}</td><td>${quantidade}</td>`
+    tbody.appendChild(tr)
+  })
+}

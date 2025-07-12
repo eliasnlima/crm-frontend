@@ -57,7 +57,6 @@ h1 {
   cursor: pointer;
   font-size: 15px;
   font-weight: bold;
-  margin-bottom: 20px;
   transition: background 0.3s;
 }
 
@@ -134,7 +133,6 @@ h1 {
 .add-client-wrapper {
   display: flex;
   justify-content: flex-end;
-  margin: 10px 0;
 }
 
 a {
@@ -164,4 +162,143 @@ a {
   border: 1px solid #374151;
   background-color: #1f2937;
   color: #f9fafb;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+
+
+#add-client-btn,
+#abrir-resumo-btn {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+#add-client-btn:hover,
+#abrir-resumo-btn:hover {
+  background-color: #059669;
+}
+
+.add-client-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center; 
+}
+
+#add-client-btn,
+#abrir-resumo-btn {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  line-height: 1; 
+  height: 42px; 
+  display: flex;
+  align-items: center;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#tabela-fases {
+  width: 100%;
+  color: #f9fafb; 
+  text-align: left;
+  border-collapse: collapse; 
+  border-radius: 8px;
+  background-color: #374151; 
+}
+
+
+#tabela-fases th {
+  background-color: #10b981; 
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  text-transform: uppercase; 
+  font-weight: bold;
+}
+
+
+#tabela-fases td {
+  background-color: #4b5563; 
+  padding: 12px;
+  font-size: 14px;
+  border-bottom: 1px solid #374151; 
+  transition: background 0.3s ease; 
+}
+
+
+#tabela-fases td:nth-child(2) {
+  text-align: center; 
+}
+
+
+#tabela-fases tr:hover td {
+  background-color: #6b7280; 
+}
+
+
+#tabela-fases tr:first-child td {
+  border-top: none; 
+}
+
+
+#tabela-fases tr:nth-child(even) {
+  background-color: #2d3748; 
+}
+
+#tabela-fases tr:nth-child(odd) {
+  background-color: #374151; 
+}
+
+
+#fechar-resumo-btn {
+  background-color: #ef4444; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#fechar-resumo-btn:hover {
+  background-color: #dc2626; 
 }
