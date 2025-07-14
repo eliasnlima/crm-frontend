@@ -290,3 +290,25 @@ ul#acoes li .data {
   border: 1px solid #4b5563;
   border-radius: 4px;
 }
+
+.cliente-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.cliente-status label {
+  color: #f9fafb;
+  font-weight: bold;
+}
+
+#status,
+.input-interacao {
+  background-color: #1f2937;
+  color: #f9fafb;
+  border: 1px solid #374151;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 15px;
+}

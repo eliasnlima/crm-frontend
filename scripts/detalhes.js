@@ -9,10 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return
     }
 
+   
     carregarCliente(clientId, token)
     showActions(clientId, token)
     cadastra(clientId, token)
     statusClient(clientId, token)
+    proxInt(token, clientId)
 })
 
 async function carregarCliente(clientId, token) {
@@ -32,6 +34,9 @@ async function carregarCliente(clientId, token) {
     document.getElementById('cliente-email').innerText = `Email: ${data.client.email}`
     document.getElementById('cliente-telefone').innerText = `Telefone: ${formatarTelefone(data.client.fone)}`
     document.getElementById('status').value = data.client.status
+     document.getElementById('interacao').value = data.client.proxInt
+  ? new Date(data.client.proxInt).toISOString().split('T')[0]
+  : ''
 
       
     } catch (err){
@@ -161,6 +166,29 @@ async function statusClient(clientId, token){
 
 
 })
+}
 
 
+async function proxInt(token, clientId) {
+    
+    document.getElementById('interacao').addEventListener('change', async (e) => {
+
+    const proxInt = e.target.value
+
+    const res = await fetch(`http://localhost:3030/proxInt/${clientId}`, {
+        method: 'PUT',
+        headers: {
+            'authorization' : 'Bearer ' + token,
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({ proxInt })
+    })
+
+    const data = await res.json()
+
+    if(!res.ok){
+        document.getElementById('int-msg').innerHTML = "Erro na requisição!"
+    }
+
+})
 }
