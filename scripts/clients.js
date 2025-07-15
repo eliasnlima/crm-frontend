@@ -171,3 +171,17 @@ function renderizarTabelaFases(fases) {
     tbody.appendChild(tr)
   })
 }
+
+document.getElementById('filtro-data').addEventListener('change', (e) => {
+    const agendado = e.target.value
+
+    const filtrados = todosClients.filter(cliente => {
+
+       const dataCliente = new Date(cliente.proxInt).toISOString().split('T')[0];
+
+        return dataCliente === agendado;
+
+    })
+
+    renderClients(filtrados)
+})

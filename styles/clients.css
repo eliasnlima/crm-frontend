@@ -302,3 +302,13 @@ a {
 #fechar-resumo-btn:hover {
   background-color: #dc2626; 
 }
+
+#filtro-data {
+  background-color: #1f2937;
+  color: #f9fafb;
+  border: 1px solid #10b981;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 15px;
+  height: 42px;
+}

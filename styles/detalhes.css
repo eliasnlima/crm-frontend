@@ -287,7 +287,7 @@ ul#acoes li .data {
   padding: 6px;
   background-color: #374151;
   color: #f9fafb;
-  border: 1px solid #4b5563;
+  border: 1px solid #10b981;
   border-radius: 4px;
 }
 
@@ -307,8 +307,11 @@ ul#acoes li .data {
 .input-interacao {
   background-color: #1f2937;
   color: #f9fafb;
-  border: 1px solid #374151;
+  border: 1px solid #10b981;
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 15px;
 }
+
+
+
