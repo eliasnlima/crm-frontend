@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     showClients(token)
+    importClient(token)
 
 })
 
@@ -185,3 +186,22 @@ document.getElementById('filtro-data').addEventListener('change', (e) => {
 
     renderClients(filtrados)
 })
+
+async function importClient(token) {
+    
+    document.getElementById('importForm').addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    
+    const response = await fetch('http://localhost:3030/import-clients', {
+      method: 'POST',
+      headers: {
+        'authorization' : 'Bearer ' + token
+      },
+      body: formData
+    })
+
+    const result = await response.json()
+    alert(result.message || 'Erro ao importar')
+  })
+}
