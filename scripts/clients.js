@@ -48,11 +48,34 @@ function renderClients(todosClients) {
     const div = document.getElementById('clients')
     div.innerHTML = ""
     
-    todosClients.forEach(client => {
+     const grupos = {};
+  const semGrupo = [];
+
+  todosClients.forEach(cliente => {
+    if (cliente.grupoEconomico) {
+      if (!grupos[cliente.grupoEconomico]) {
+        grupos[cliente.grupoEconomico] = [];
+      }
+      grupos[cliente.grupoEconomico].push(cliente);
+    } else {
+      semGrupo.push(cliente);
+    }
+  });
+
+   Object.entries(grupos).forEach(([grupoCodigo, membros]) => {
+        const li = document.createElement("li")
+        li.innerHTML = `<a href="detalhes.html?grupo=${grupoCodigo}">G.E: ${grupoCodigo} - ${membros.length} clientes</a>`
+        div.appendChild(li)
+    })
+
+
+    semGrupo.forEach(client => {
         const li = document.createElement("li")
         li.innerHTML = `<a href="detalhes.html?id=${client._id}">${client.codigo} - ${client.nome}<span class="data">CNPJ: ${formatarCNPJ(client.CNPJ)} - ${formatarTelefone(client.fone)} - ${client.email}</span></a>`
         div.appendChild(li)
-    });
+  });
+
+  
 }
 
 const modal = document.getElementById('modal')
@@ -128,18 +151,50 @@ function formatarTelefone(telefone) {
 }
 
 document.getElementById('search-client').addEventListener('input', (e) => {
-    const termo = e.target.value.toLowerCase()
+     const termo = e.target.value.trim().replace(/\s+/g, ' ').toLowerCase();
+
+     if (termo === "") {
+        renderClients(todosClients);
+        return;
+    }
+
+    const filtrados = todosClients.filter(cliente => {
+       const termo = e.target.value.toLowerCase();
 
     const filtrados = todosClients.filter(cliente => {
         return (
             cliente.nome?.toLowerCase().includes(termo) ||
             cliente.codigo?.toLowerCase().includes(termo)
-        )
+        );
+    });
 
-    })
+    const grupoFiltrado = filtrados.find(cliente => cliente.grupoEconomico);
+    
+    if (grupoFiltrado) {
+   
+        renderGroup(grupoFiltrado.grupoEconomico);
+    } else {
+     
+        renderClients(filtrados);
+    }
+});
 
-    renderClients(filtrados)
 })
+
+function renderGroup(grupoCodigo) {
+    const div = document.getElementById('clients');
+    div.innerHTML = "";  
+
+
+    const li = document.createElement("li");
+    li.innerHTML = `
+        <a href="detalhes.html?grupo=${grupoCodigo}">
+            G.E: ${grupoCodigo}
+        </a>
+    `;
+    div.appendChild(li);
+}
+
 
 document.getElementById('abrir-resumo-btn').addEventListener('click', () => {
   const fasesContagem = contarPorFase(todosClients)
