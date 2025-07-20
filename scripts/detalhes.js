@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         carregarGrupo(grupoCodigo, token)
         showActionsGrupo(grupoCodigo, token)
         cadastraGrupo(grupoCodigo, token)
+        statusGrupo(grupoCodigo, token)
     } else {
         carregarCliente(clientId, token)
         showActions(clientId, token)
@@ -48,6 +49,40 @@ async function carregarCliente(clientId, token) {
 
       
     } catch (err){
+        document.getElementById('cliente-nome').innerText = "Erro no servidor!"
+    }
+
+}
+
+async function carregarGrupo(grupoCodigo, token) {
+    try {
+        const res = await fetch(`http://localhost:3030/clients`, {
+            headers: { 'authorization': 'Bearer ' + token }
+        })
+
+        const data = await res.json()
+        const grupoClientes = data.clients.filter(c => c.grupoEconomico === grupoCodigo)
+
+        if (grupoClientes.length === 0) {
+            document.getElementById('cliente-nome').innerText = "Grupo não encontrado!"
+            return
+        }
+
+
+        const nomes = grupoClientes.map(c => `${c.codigo} - ${c.nome}`).join(" | ")
+        const status = grupoClientes[0].status
+        document.getElementById('cliente-nome').innerText = `Grupo Econômico: ${grupoCodigo}`
+        document.getElementById('cliente-cnpj').innerText = nomes
+        document.getElementById('cliente-email').innerText = ""
+        document.getElementById('cliente-telefone').innerText = ""
+        document.getElementById('cliente-grupo').innerText = ""
+        document.getElementById('status').value = status
+
+        for (const cliente of grupoClientes) {
+            await showActions(cliente._id, token, cliente.nome)
+        }
+
+    } catch (err) {
         document.getElementById('cliente-nome').innerText = "Erro no servidor!"
     }
 
@@ -249,6 +284,28 @@ async function statusClient(clientId, token){
 })
 }
 
+async function statusGrupo(grupo, token){
+
+    document.getElementById('status').addEventListener('change', async (e) => {
+   
+
+    const status = e.target.value
+
+    const res = await fetch(`http://localhost:3030/grupoStatus/${grupo}`, {
+        method: 'PUT',
+        headers: {
+            'authorization' : 'Bearer ' + token,
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({ status })
+    })
+
+    const data = await res.json()
+
+
+})
+}
+
 
 async function proxInt(token, clientId) {
     
@@ -275,35 +332,3 @@ async function proxInt(token, clientId) {
 }
 
 
-async function carregarGrupo(grupoCodigo, token) {
-    try {
-        const res = await fetch(`http://localhost:3030/clients`, {
-            headers: { 'authorization': 'Bearer ' + token }
-        })
-
-        const data = await res.json()
-        const grupoClientes = data.clients.filter(c => c.grupoEconomico === grupoCodigo)
-
-        if (grupoClientes.length === 0) {
-            document.getElementById('cliente-nome').innerText = "Grupo não encontrado!"
-            return
-        }
-
-
-        const nomes = grupoClientes.map(c => `${c.codigo} - ${c.nome}`).join(" | ")
-        document.getElementById('cliente-nome').innerText = `Grupo Econômico: ${grupoCodigo}`
-        document.getElementById('cliente-cnpj').innerText = nomes
-        document.getElementById('cliente-email').innerText = ""
-        document.getElementById('cliente-telefone').innerText = ""
-        document.getElementById('cliente-grupo').innerText = ""
-
-
-        for (const cliente of grupoClientes) {
-            await showActions(cliente._id, token, cliente.nome)
-        }
-
-    } catch (err) {
-        document.getElementById('cliente-nome').innerText = "Erro no servidor!"
-    }
-
-}
