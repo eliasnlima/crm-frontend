@@ -208,9 +208,17 @@ document.getElementById('fechar-resumo-btn').addEventListener('click', () => {
 
 function contarPorFase(clientes) {
   const contagem = {}
+  const grupoContados = new Set()
 
   clientes.forEach(cliente => {
+    const grupo = cliente.grupoEconomico
     const fase = cliente.status || 'Não definido'
+
+    if(grupo) {
+      if (grupoContados.has(grupo)) return
+      grupoContados.add(grupo)
+    }
+
     contagem[fase] = (contagem[fase] || 0) + 1
   })
 
