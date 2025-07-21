@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showActionsGrupo(grupoCodigo, token)
         cadastraGrupo(grupoCodigo, token)
         statusGrupo(grupoCodigo, token)
+        proxIntGrupo(token, grupoCodigo)
     } else {
         carregarCliente(clientId, token)
         showActions(clientId, token)
@@ -71,12 +72,16 @@ async function carregarGrupo(grupoCodigo, token) {
 
         const nomes = grupoClientes.map(c => `${c.codigo} - ${c.nome}`).join(" | ")
         const status = grupoClientes[0].status
+        const int = grupoClientes[0].proxInt
         document.getElementById('cliente-nome').innerText = `Grupo Econômico: ${grupoCodigo}`
         document.getElementById('cliente-cnpj').innerText = nomes
         document.getElementById('cliente-email').innerText = ""
         document.getElementById('cliente-telefone').innerText = ""
         document.getElementById('cliente-grupo').innerText = ""
         document.getElementById('status').value = status
+        document.getElementById('interacao').value = int
+         ? new Date(int).toISOString().split('T')[0]
+  : ''
 
         for (const cliente of grupoClientes) {
             await showActions(cliente._id, token, cliente.nome)
@@ -314,6 +319,30 @@ async function proxInt(token, clientId) {
     const proxInt = e.target.value
 
     const res = await fetch(`http://localhost:3030/proxInt/${clientId}`, {
+        method: 'PUT',
+        headers: {
+            'authorization' : 'Bearer ' + token,
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({ proxInt })
+    })
+
+    const data = await res.json()
+
+    if(!res.ok){
+        document.getElementById('int-msg').innerHTML = "Erro na requisição!"
+    }
+
+})
+}
+
+async function proxIntGrupo(token, grupo) {
+    
+    document.getElementById('interacao').addEventListener('change', async (e) => {
+
+    const proxInt = e.target.value
+
+    const res = await fetch(`http://localhost:3030/intGrupo/${grupo}`, {
         method: 'PUT',
         headers: {
             'authorization' : 'Bearer ' + token,
