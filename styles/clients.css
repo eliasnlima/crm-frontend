@@ -353,3 +353,17 @@ a {
   gap: 10px;
   align-items: center;
 }
+
+.paginacao-container {
+  margin-top: 20px;
+  text-align: center;
+}
+.botao-paginacao {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.botao-paginacao:disabled {
+  background-color: #ccc;
+  cursor: default;
+}
