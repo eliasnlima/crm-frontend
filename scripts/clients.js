@@ -17,7 +17,7 @@ let todosClients = []
 async function showClients(token){
     
     try{
-    const res = await fetch('http://localhost:3030/clients', {
+    const res = await fetch('https://crm-backend-t9p2.onrender.com/clients', {
         method: 'GET',
         headers: {
             'authorization': 'Bearer ' + token
@@ -107,7 +107,7 @@ cadastrarBtn.addEventListener('click', async () => {
 
     try{
 
-        const res = await fetch('http://localhost:3030/client', {
+        const res = await fetch('https://crm-backend-t9p2.onrender.com/client', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json',
@@ -256,7 +256,7 @@ async function importClient(token) {
     e.preventDefault()
     const formData = new FormData(e.target)
     
-    const response = await fetch('http://localhost:3030/import-clients', {
+    const response = await fetch('https://crm-backend-t9p2.onrender.com/import-clients', {
       method: 'POST',
       headers: {
         'authorization' : 'Bearer ' + token

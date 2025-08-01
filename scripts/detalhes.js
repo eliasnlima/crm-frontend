@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function carregarCliente(clientId, token) {
     
     try{
-        const res = await fetch(`http://localhost:3030/client/${clientId}`, {
+        const res = await fetch(`https://crm-backend-t9p2.onrender.com/client/${clientId}`, {
         method: 'GET',
         headers: {
             'authorization' : 'Bearer ' + token
@@ -57,7 +57,7 @@ async function carregarCliente(clientId, token) {
 
 async function carregarGrupo(grupoCodigo, token) {
     try {
-        const res = await fetch(`http://localhost:3030/clients`, {
+        const res = await fetch(`https://crm-backend-t9p2.onrender.com/clients`, {
             headers: { 'authorization': 'Bearer ' + token }
         })
 
@@ -104,7 +104,7 @@ async function cadastra(client, token) {
         return
     }
 
-    const res = await fetch('http://localhost:3030/action', {
+    const res = await fetch('https://crm-backend-t9p2.onrender.com/action', {
         method: 'POST',
         headers: {
             'Content-Type' : 'application/json',
@@ -138,7 +138,7 @@ async function cadastraGrupo(grupo, token) {
         return
     }
 
-    const res = await fetch('http://localhost:3030/action/grupo', {
+    const res = await fetch('https://crm-backend-t9p2.onrender.com/action/grupo', {
         method: 'POST',
         headers: {
             'Content-Type' : 'application/json',
@@ -185,7 +185,7 @@ async function showActions(clientId, token) {
     const lista = document.getElementById('acoes')
     lista.innerHTML = ""
 
-    const res = await fetch(`http://localhost:3030/client/${clientId}/actions`, {
+    const res = await fetch(`https://crm-backend-t9p2.onrender.com/client/${clientId}/actions`, {
         method: 'GET',
         headers: {
             'authorization' : 'Bearer ' + token
@@ -222,7 +222,7 @@ async function showActionsGrupo(grupo, token) {
     const lista = document.getElementById('acoes')
     lista.innerHTML = ""
 
-    const res = await fetch(`http://localhost:3030/grupo/${grupo}/actions`, {
+    const res = await fetch(`https://crm-backend-t9p2.onrender.com/grupo/${grupo}/actions`, {
         method: 'GET',
         headers: {
             'authorization' : 'Bearer ' + token
@@ -274,7 +274,7 @@ async function statusClient(clientId, token){
 
     const status = e.target.value
 
-    const res = await fetch(`http://localhost:3030/clientStatus/${clientId}`, {
+    const res = await fetch(`https://crm-backend-t9p2.onrender.com/clientStatus/${clientId}`, {
         method: 'PUT',
         headers: {
             'authorization' : 'Bearer ' + token,
@@ -296,7 +296,7 @@ async function statusGrupo(grupo, token){
 
     const status = e.target.value
 
-    const res = await fetch(`http://localhost:3030/grupoStatus/${grupo}`, {
+    const res = await fetch(`https://crm-backend-t9p2.onrender.com/grupoStatus/${grupo}`, {
         method: 'PUT',
         headers: {
             'authorization' : 'Bearer ' + token,
@@ -318,7 +318,7 @@ async function proxInt(token, clientId) {
 
     const proxInt = e.target.value
 
-    const res = await fetch(`http://localhost:3030/proxInt/${clientId}`, {
+    const res = await fetch(`https://crm-backend-t9p2.onrender.com/proxInt/${clientId}`, {
         method: 'PUT',
         headers: {
             'authorization' : 'Bearer ' + token,
@@ -342,7 +342,7 @@ async function proxIntGrupo(token, grupo) {
 
     const proxInt = e.target.value
 
-    const res = await fetch(`http://localhost:3030/intGrupo/${grupo}`, {
+    const res = await fetch(`https://crm-backend-t9p2.onrender.com/intGrupo/${grupo}`, {
         method: 'PUT',
         headers: {
             'authorization' : 'Bearer ' + token,
