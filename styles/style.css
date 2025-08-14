@@ -54,3 +54,16 @@ button:hover {
   margin-top: 1rem;
   color: #f87171; /* vermelho claro para erros */
 }
+
+.cliente-agendado {
+    border: 2px solid green; /* borda verde ao redor */
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.grupo-agendado {
+    border: 2px solid green; /* borda verde para o grupo */
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+}

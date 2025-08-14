@@ -70,7 +70,7 @@ async function carregarGrupo(grupoCodigo, token) {
         }
 
 
-        const nomes = grupoClientes.map(c => `${c.codigo} - ${c.nome}`).join(" | ")
+        const nomes = grupoClientes.map(c => `${c.codigo} - ${c.nome}`).join(`\n`)
         const status = grupoClientes[0].status
         const int = grupoClientes[0].proxInt
         document.getElementById('cliente-nome').innerText = `Grupo Econômico: ${grupoCodigo}`
