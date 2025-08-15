@@ -4,6 +4,8 @@ document.getElementById("login-form").addEventListener('submit', async (e) => {
     const email = document.getElementById("email").value 
     const password = document.getElementById("password").value 
 
+    document.getElementById('result').innerHTML = "Carregando..."
+
     try {
         
         const res = await fetch('https://crm-backend-t9p2.onrender.com/login', {
