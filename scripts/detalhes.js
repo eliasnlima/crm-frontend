@@ -104,6 +104,9 @@ async function cadastra(client, token) {
         return
     }
 
+    document.getElementById('modal-msg').innerHTML = "Salvando, por favor aguarde..."
+    cadastraAction.disabled = true
+
     const res = await fetch('https://crm-backend-t9p2.onrender.com/action', {
         method: 'POST',
         headers: {
@@ -119,7 +122,9 @@ async function cadastra(client, token) {
     if(res.ok){
         modal.style.display = "none"
         document.getElementById('descricao').value = ""
+        document.getElementById('modal-msg').innerHTML = ""
         showActions(client, token)
+        cadastraAction.disabled = false
     } else {
         document.getElementById('modal-msg').innerHTML = "Erro ao adicionar ação!"
     }
