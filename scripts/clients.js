@@ -64,7 +64,8 @@ function renderClients(todosClients) {
 
    Object.entries(grupos).forEach(([grupoCodigo, membros]) => {
         const li = document.createElement("li")
-        li.innerHTML = `<a href="detalhes.html?grupo=${grupoCodigo}">G.E: ${grupoCodigo} - ${membros.length} clientes</a>`
+        const nomeGrupo = membros[0]?.nomeGrupo
+        li.innerHTML = `<a href="detalhes.html?grupo=${grupoCodigo}">G.E: ${grupoCodigo} - ${nomeGrupo} - ${membros.length} clientes</a>`
         div.appendChild(li)
     })
 

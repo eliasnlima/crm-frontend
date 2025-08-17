@@ -73,7 +73,9 @@ async function carregarGrupo(grupoCodigo, token) {
         const nomes = grupoClientes.map(c => `${c.codigo} - ${c.nome}`).join(`\n`)
         const status = grupoClientes[0].status
         const int = grupoClientes[0].proxInt
-        document.getElementById('cliente-nome').innerText = `Grupo Econômico: ${grupoCodigo}`
+        const nomeGrupo = grupoClientes[0].nomeGrupo
+
+        document.getElementById('cliente-nome').innerText = `Grupo Econômico: ${grupoCodigo} - ${nomeGrupo}`
         document.getElementById('cliente-cnpj').innerText = nomes
         document.getElementById('cliente-email').innerText = ""
         document.getElementById('cliente-telefone').innerText = ""
